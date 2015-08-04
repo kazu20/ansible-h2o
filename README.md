@@ -46,6 +46,12 @@ Including an example of how to use your role (for instance, with variables passe
       roles:
          - h2o
 
+Start and stop h2o
+------------------
+
+/etc/init.d/h2o start
+/etc/init.d/h2o stop
+
 License
 -------
 

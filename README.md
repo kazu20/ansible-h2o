@@ -11,7 +11,7 @@ None.
 Role Variables
 --------------
 
-# defaults file for h2o
+defaults file for h2o
 - h2o_src: /usr/local/src
 
 - h2o_var: /var/h2o
@@ -19,7 +19,7 @@ Role Variables
 - h2o_logs: /var/h2o/logs
 - h2o_conf: /var/h2o/conf
 
-#vars file for h2o
+vars file for h2o
 h2o_yum_packages:
  - cmake
  - openssl-devel

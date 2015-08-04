@@ -1,0 +1,49 @@
+---
+# tasks file for h2o
+
+- name: install yum packages group
+  yum: name="@Development Tools" state=present
+
+- name: install yum packages
+  yum: name={{ item }} state=present
+  with_items: h2o_yum_packages
+
+- name: makedir 
+  file: path={{ item }}
+        state=directory
+        owner=root
+        group=root
+        mode=0755
+  with_items: h2o_makedir
+
+- name: git clone h2o
+  git: repo=https://github.com/kazuho/h2o.git
+       dest={{ h2o_src }}
+
+- name: make h2o
+  shell:
+    cd {{ h2o_src }} &&
+    cmake . &&
+    make &&
+    make install
+
+- name: copy init file
+  template: src=h2o 
+            dest=/etc/init.d/h2o 
+            owner=root 
+            group=root 
+            mode=744
+
+- name: copy h2o.conf
+  template: src=h2o.conf
+            dest={{ h2o_conf }}
+            owner=root 
+            group=root 
+            mode=744
+
+- name: copy index.html
+  copy: src=index.html
+        dest={{ h2o_doc }}
+        owner=root 
+        group=root 
+        mode=744

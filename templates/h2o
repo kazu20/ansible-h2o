@@ -1,0 +1,31 @@
+#!/bin/bash
+#
+# h2o
+#
+# chkconfig: 2345 85 15
+# description: h2o
+
+# source function library
+. /etc/rc.d/init.d/functions
+
+H2O_BIN=/usr/local/bin/h2o
+H2O_CONF={{ h2o_conf }}/h2o.conf
+
+start(){
+	$H2O_BIN -m worker -c $H2O_CONF &
+}
+
+stop(){
+ pkill h2o
+}
+
+case "$1" in
+	start)
+		start
+		;;
+	stop)
+		stop
+		;;
+	*)
+		echo $"Usage: $0 {start|stop}"
+esac

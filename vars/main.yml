@@ -1,0 +1,13 @@
+---
+# vars file for h2o
+h2o_yum_packages:
+ - cmake
+ - openssl-devel
+ - libyaml-devel
+
+h2o_makedir:
+ - "{{ h2o_src }}"
+ - "{{ h2o_var }}"
+ - "{{ h2o_doc }}"
+ - "{{ h2o_logs }}"
+ - "{{ h2o_conf }}"
